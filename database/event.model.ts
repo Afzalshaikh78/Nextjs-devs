@@ -24,8 +24,8 @@ const EventSchema = new Schema<IEvent>(
   {
     title: {
       type: String,
-      required: [true, "Title is required"],
       trim: true,
+      unique: true,
       maxlength: [100, "Title cannot exceed 100 characters"],
     },
     slug: {
@@ -182,7 +182,7 @@ function normalizeTime(timeString: string): string {
 }
 
 // Create unique index on slug for better performance
-EventSchema.index({ slug: 1 }, { unique: true });
+// EventSchema.index({ slug: 1 }, { unique: true });
 
 // Create compound index for common queries
 EventSchema.index({ date: 1, mode: 1 });
