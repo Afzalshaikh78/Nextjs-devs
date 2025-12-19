@@ -1,10 +1,12 @@
 import Eventcard from "@/components/Eventcard";
 import Explorebtn from "@/components/Explorebtn";
-import { events } from "@/lib/constants";
+import { IEvent } from "@/database";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const page = async () => {
+  const response = await fetch(`${BASE_URL}/api/events`);
+  const { events } = await response.json();
 
-
-const page = () => {
   return (
     <div>
       <section>
@@ -21,7 +23,7 @@ const page = () => {
           <h3>Featured Events</h3>
 
           <ul className="events">
-            {events.map((event) => (
+            {events && events.length > 0 &&events.map((event: IEvent) => (
               <li key={event.title}>
                 <Eventcard {...event} />
               </li>
