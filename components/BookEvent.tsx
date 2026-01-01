@@ -11,7 +11,7 @@ const BookEvent = () => {
 
     setTimeout(() => {
       setSubmitted(true);
-    }, 1000);
+    }, 2000);
   };
 
   return (
